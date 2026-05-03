@@ -1,0 +1,63 @@
+모터 켈리브레이션: 
+lerobot-calibrate \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM1 \
+    --robot.id=my_awesome_follower_arm
+
+
+
+단순 teleop:
+lerobot-teleoperate \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM1 \
+    --robot.id=my_awesome_follower_arm \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/ttyACM0 \
+    --teleop.id=my_awesome_leader_arm
+
+
+
+callibration파일 경로:
+/home/hs-park/.cache/huggingface/lerobot/calibration/teleoperators/so_leader/my_awesome_leader_arm.json
+
+/home/hs-park/.cache/huggingface/lerobot/calibration/robots/so_follower/my_awesome_follower_arm.json
+
+
+
+데이터셋 수집 명령어:
+    lerobot-record \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM1 \
+    --robot.id=my_awesome_follower_arm \
+    --robot.cameras="{ front: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}, rear: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/ttyACM0 \
+    --teleop.id=my_awesome_leader_arm \
+    --display_data=true \
+    --dataset.repo_id=collect_data/candy \
+    --dataset.num_episodes=10 \
+    --dataset.single_task="Pick the yellow candy" \
+    --dataset.push_to_hub=false \
+   --resume=true
+
+
+usb 포트 고정 설정함.
+ttyACM1 : Leader arm
+ttyACM0 : Follower arm
+
+
+데이터 리플레이: 
+lerobot-replay \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM1 \
+    --robot.id=my_awesome_follower_arm  \
+    --dataset.repo_id=/home/hs-park/.cache/huggingface/lerobot/collect_data/candy\
+    --dataset.episode=47
+
+
+
+데이터 시각화: 
+lerobot-dataset-viz \
+    --repo-id=/home/hs-park/.cache/huggingface/lerobot/collect_data/candy\
+    --episode-index=0 \
+    --display-compressed-images=true
