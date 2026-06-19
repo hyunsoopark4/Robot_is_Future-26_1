@@ -26,3 +26,13 @@
 # 데이터 수집 단계
 - 중간에 멈춤 없이 데이터 수집하기
 - 실패한 데이터를 섞는게 맞는 것인가?
+
+
+
+https://github.com/user-attachments/assets/558ee0a7-e3c5-4468-90da-4d8666a2dd79
+
+
+
+https://github.com/user-attachments/assets/763620fb-9337-491a-b45e-3c66448b05ae
+
+
